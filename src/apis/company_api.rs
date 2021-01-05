@@ -172,7 +172,7 @@ pub async fn get_company(configuration: &configuration::Configuration, org_name:
 }
 
 /// Lists all companies in an organization. Optionally, you can return an expanded list of companies, displaying a full profile for each company in the organization.  **With Apigee Edge for Public Cloud**: * The maximum number of companies returned is **1000**. * You can paginate the list of companies returned using the `startKey` and `count` query parameters
-pub async fn list_companies(configuration: &configuration::Configuration, org_name: &str, expand: Option<bool>, start_key: Option<&str>, count: Option<&str>) -> Result<crate::models::Companies, Error<ListCompaniesError>> {
+pub async fn list_companies<S: AsRef<str>>(configuration: &configuration::Configuration, org_name: &str, expand: Option<bool>, start_key: Option<S>, count: Option<S>) -> Result<crate::models::Companies, Error<ListCompaniesError>> {
 
     let local_var_client = &configuration.client;
 
@@ -183,10 +183,10 @@ pub async fn list_companies(configuration: &configuration::Configuration, org_na
         local_var_req_builder = local_var_req_builder.query(&[("expand", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = start_key {
-        local_var_req_builder = local_var_req_builder.query(&[("startKey", &local_var_str.to_string())]);
+        local_var_req_builder = local_var_req_builder.query(&[("startKey", &local_var_str.as_ref().to_string())]);
     }
     if let Some(ref local_var_str) = count {
-        local_var_req_builder = local_var_req_builder.query(&[("count", &local_var_str.to_string())]);
+        local_var_req_builder = local_var_req_builder.query(&[("count", &local_var_str.as_ref().to_string())]);
     }
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
