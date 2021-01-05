@@ -172,7 +172,7 @@ pub async fn get_company(configuration: &configuration::Configuration, org_name:
 }
 
 /// Lists all companies in an organization. Optionally, you can return an expanded list of companies, displaying a full profile for each company in the organization.  **With Apigee Edge for Public Cloud**: * The maximum number of companies returned is **1000**. * You can paginate the list of companies returned using the `startKey` and `count` query parameters
-pub async fn list_companies<S: AsRef<str>>(configuration: &configuration::Configuration, org_name: &str, expand: Option<bool>, start_key: Option<S>, count: Option<S>) -> Result<crate::models::Companies, Error<ListCompaniesError>> {
+pub async fn list_companies<S: AsRef<str>, S2: AsRef<str>>(configuration: &configuration::Configuration, org_name: &str, expand: Option<bool>, start_key: Option<S>, count: Option<S2>) -> Result<crate::models::Companies, Error<ListCompaniesError>> {
 
     let local_var_client = &configuration.client;
 
