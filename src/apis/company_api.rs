@@ -183,10 +183,10 @@ pub async fn list_companies(configuration: &configuration::Configuration, org_na
         local_var_req_builder = local_var_req_builder.query(&[("expand", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = start_key {
-        local_var_req_builder = local_var_req_builder.query(&[("startKey", &local_var_str.as_ref().to_string())]);
+        local_var_req_builder = local_var_req_builder.query(&[("startKey", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = count {
-        local_var_req_builder = local_var_req_builder.query(&[("count", &local_var_str.as_ref().to_string())]);
+        local_var_req_builder = local_var_req_builder.query(&[("count", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
